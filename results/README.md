@@ -2,80 +2,65 @@
 
 This folder contains representative training and evaluation plots for the RL-based adaptive cruise control experiments in this repo.
 
-I wanted the repo to show not only the code, but also what the learned controller actually does, both during training and during rollout on a driving profile.
-
-## What is here
+I wanted the repo to show not only the code, but also what the learned controller actually does during rollout on a driving profile.
 
 Right now, I included two main FTP-75 SAC result sets:
 
 - `ftp75_sac_ep200_per10/`
 - `ftp75_sac_ep250_per50/`
 
-These folders include a mix of:
-- training/evaluation reward plots,
-- actor and critic loss plots,
-- rollout plots for speed tracking,
-- spacing behavior,
-- acceleration comparison,
-- and cumulative energy consumption.
+These folders include rollout plots for:
+- speed tracking
+- spacing behavior
+- acceleration comparison
+- cumulative distance / cumulative energy
 
-## Types of plots
+There are also combined training plots in this folder for actor loss, critic loss, and training/evaluation reward.
 
-Some of the result folders include plots like:
+---
 
-- `training_eval_combined_*.pdf`  
-  training reward and evaluation reward across timesteps, usually averaged across multiple seeds
+## SAC on FTP-75 — episode length 200, PER = 10%
 
-- `actor_loss_combined_*.pdf`  
-  actor loss trend during training
+### Reference vs ego speed
+![Reference vs Ego Speed](ftp75_sac_ep200_per10/reference_vs_ego_speed.png)
 
-- `critic_loss_combined_*.pdf`  
-  critic loss trend during training
+### Distance difference
+![Distance Difference](ftp75_sac_ep200_per10/distance_difference.png)
 
-- `reference_vs_ego_speed.png`  
-  comparison between lead/reference speed and ego vehicle speed
+### Acceleration comparison
+![Acceleration Comparison](ftp75_sac_ep200_per10/acceleration_comparison.png)
 
-- `distance_difference.png`  
-  distance gap over time between lead and ego vehicles
+### Cumulative energy
+![Cumulative Energy](ftp75_sac_ep200_per10/cumulative_energy.png)
 
-- `acceleration_comparison.png`  
-  ego and lead acceleration comparison
+### Training summary files
+- [Actor loss (5 seeds)](actor_loss_combined_5_seeds_per(10%)_200.pdf)
+- [Critic loss (5 seeds)](critic_loss_combined_5_seeds_per(10%)_200.pdf)
+- [Training / eval reward (5 seeds)](training_eval_combined_5_seeds_per(10%)_200.pdf)
 
-- `cumulative_energy.png`  
-  cumulative energy comparison between ego and lead vehicles
+---
 
-## Why I included these
+## SAC on FTP-75 — episode length 250, PER = 50%
 
-The idea here was to show both sides of the project:
+### Reference vs ego speed
+![Reference vs Ego Speed](ftp75_sac_ep250_per50/reference_vs_ego_speed.png)
 
-1. **training behavior**
-   - whether the policy converges reasonably
-   - how reward evolves
-   - how actor/critic losses behave
+### Distance difference
+![Distance Difference](ftp75_sac_ep250_per50/distance_difference.png)
 
-2. **rollout behavior**
-   - whether the ego vehicle tracks the reference well
-   - whether spacing stays reasonable
-   - how aggressive or smooth the response is
-   - whether there is an energy benefit compared to the lead/reference case
+### Acceleration comparison
+![Acceleration Comparison](ftp75_sac_ep250_per50/acceleration_comparison.png)
 
-## Not the full archive
+### Cumulative distance
+![Cumulative Distance](ftp75_sac_ep250_per50/cumulative_distance.png)
 
-I generated many more plots than what is included here, across different algorithms, packet-loss settings, episode lengths, and test cases.
+### Training summary files
+- [Actor loss (10 seeds)](actor_loss_combined_10_seeds_per(50%)_250.pdf)
+- [Critic loss (10 seeds)](critic_loss_combined_10_seeds_per(50%)_250.pdf)
+- [Training / eval reward (10 seeds)](training_eval_combined_10_seeds_per(50%)_250.pdf)
 
-I did not want the repo to turn into a storage dump, so I kept this folder focused on a smaller set of representative results.
+---
 
-## Folder naming
+## Note
 
-The result folders follow the same naming style as the model folders, for example:
-
-`ftp75_sac_ep200_per10`
-
-This makes it easy to connect:
-- the trained model in `models/`
-- the plots in `results/`
-- and the experiment setting being shown
-
-## In short
-
-This folder is meant to give a quick but concrete view of how the controller behaved under a few representative settings, without overwhelming the repo with every single experiment output.
+I generated more plots across different algorithms, packet-loss settings, episode lengths, and test cases, but I kept this folder focused on a smaller representative subset so the repo stays readable.

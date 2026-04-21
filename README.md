@@ -57,9 +57,30 @@ I also ran broader experiments across:
 I did not want to dump the full archive into the repo, so for now I kept a smaller representative subset of models and results.
 
 ---
+## Representative Results
 
+Below are a few representative rollout plots from the RL-based adaptive cruise control experiments.
+
+### SAC on FTP-75, episode length 200, packet error rate 10%
+
+**Reference vs ego speed**
+![Reference vs Ego Speed](results/ftp75_sac_ep200_per10/reference_vs_ego_speed.png)
+
+**Distance difference**
+![Distance Difference](results/ftp75_sac_ep200_per10/distance_difference.png)
+
+### SAC on FTP-75, episode length 250, packet error rate 50%
+
+**Reference vs ego speed**
+![Reference vs Ego Speed](results/ftp75_sac_ep250_per50/reference_vs_ego_speed.png)
+
+**Acceleration comparison**
+![Acceleration Comparison](results/ftp75_sac_ep250_per50/acceleration_comparison.png)
+
+For more rollout plots and training summary files, see [results/README.md](results/README.md).
 ## Repository Structure
 
+---
 pip install -r requirements.txt #For installing dependencies
 
 ```text
