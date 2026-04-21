@@ -2,11 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from controllers.pid_controller import PIDController
 from env.acc_env import ACCEnvironment
-
+from pathlib import Path
 def run_simulation(
     scenario_path: str = "scenarios/real/FTP75.csv",
     dt: float = 1.0,
 ):
+    scenario_name = Path(scenario_path).stem
     env = ACCEnvironment(
         scenario_path=scenario_path,
         dt=dt,
@@ -166,7 +167,7 @@ def run_simulation(
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("assets/ftp75_speed_tracking_latest.png", dpi=200, bbox_inches="tight")
+    plt.savefig(f"assets/{scenario_name}_speed_tracking.png", dpi=200, bbox_inches="tight")
     plt.close()
 
     plt.figure(figsize=(10, 5))
@@ -180,7 +181,7 @@ def run_simulation(
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("assets/ftp75_gap_tracking_latest.png", dpi=200, bbox_inches="tight")
+    plt.savefig(f"assets/{scenario_name}_gap_tracking.png", dpi=200, bbox_inches="tight")
     plt.close()
 
     plt.figure(figsize=(10, 5))
@@ -190,7 +191,7 @@ def run_simulation(
     plt.title("Ego Acceleration")
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("assets/ftp75_acceleration_latest.png", dpi=200, bbox_inches="tight")
+    plt.savefig(f"assets/{scenario_name}_acceleration.png", dpi=200, bbox_inches="tight")
     plt.close()
 
     plt.figure(figsize=(10, 5))
@@ -203,8 +204,14 @@ def run_simulation(
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("assets/ftp75_jerk_latest.png", dpi=200, bbox_inches="tight")
+    plt.savefig(f"assets/{scenario_name}_jerk.png", dpi=200, bbox_inches="tight")
     plt.close()
 
 if __name__ == "__main__":
-    run_simulation()
+    import sys
+
+    scenario = "scenarios/real/FTP75.csv"
+    if len(sys.argv) > 1:
+        scenario = sys.argv[1]
+
+    run_simulation(scenario)
