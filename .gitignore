@@ -1,22 +1,30 @@
-cat > .gitignore <<'EOF'
 venv/
 .idea/
 __pycache__/
 *.pyc
-models/
 .env
+
 logs/*
 !logs/.gitkeep
-
-results/*
-!results/.gitkeep
-!results/*.png
-
-models/*
-!models/.gitkeep
-!models/README.md
 
 data/*
 !data/.gitkeep
 !data/README.md
-EOF
+
+# Keep models curated
+models/*
+!models/.gitkeep
+!models/README.md
+!models/ftp75_sac_ep200_per10/
+!models/ftp75_sac_ep200_per10/**
+!models/ftp75_sac_ep250_per50/
+!models/ftp75_sac_ep250_per50/**
+
+# Keep selected results curated
+results/*
+!results/.gitkeep
+!results/README.md
+!results/ftp75_sac_ep200_per10/
+!results/ftp75_sac_ep200_per10/**
+!results/ftp75_sac_ep250_per50/
+!results/ftp75_sac_ep250_per50/**
